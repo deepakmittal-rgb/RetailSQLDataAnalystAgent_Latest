@@ -1,0 +1,6 @@
+{
+  "name": "Retail SQL Data Analyst Agent",
+  "description": "Enterprise Retail SQL Data Analyst Agent with LangGraph/LangChain architecture, conversation context memory, safe read-only MySQL/SQL execution, and concise business intelligence summaries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

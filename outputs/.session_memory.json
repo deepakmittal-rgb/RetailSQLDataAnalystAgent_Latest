@@ -1,0 +1,13 @@
+{
+  "active_context": {
+    "channel": null,
+    "region": null,
+    "city": null,
+    "category": null,
+    "customer_segment": null,
+    "store_id": null,
+    "last_primary_metric": "net_sales",
+    "last_dimension": null
+  },
+  "turns": []
+}

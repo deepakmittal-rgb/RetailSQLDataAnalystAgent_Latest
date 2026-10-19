@@ -1,0 +1,75 @@
+{
+  "question": "What are the top 5 products by net sales?",
+  "original_question": "What are the top 5 products by net sales?",
+  "is_followup": false,
+  "conversation_history": "No previous conversation context (this is the first question).",
+  "active_filters": {
+    "channel": null,
+    "region": null,
+    "city": null,
+    "category": null,
+    "customer_segment": null,
+    "store_id": null,
+    "last_primary_metric": "net_sales",
+    "last_dimension": null
+  },
+  "generated_sql": "SELECT\n    p.product_id,\n    p.product_name,\n    p.category,\n    SUM(st.units_sold) AS total_units_sold,\n    ROUND(SUM(st.units_sold * st.unit_price * (1.0 - (st.discount_pct / 100.0))), 2) AS net_sales\nFROM sales_transactions st\nINNER JOIN products p ON st.product_id = p.product_id\n\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY net_sales DESC\nLIMIT 5;",
+  "sanitized_sql": "SELECT\n    p.product_id,\n    p.product_name,\n    p.category,\n    SUM(st.units_sold) AS total_units_sold,\n    ROUND(SUM(st.units_sold * st.unit_price * (1.0 - (st.discount_pct / 100.0))), 2) AS net_sales\nFROM sales_transactions st\nINNER JOIN products p ON st.product_id = p.product_id\n\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY net_sales DESC\nLIMIT 5",
+  "is_safe": true,
+  "safety_reason": "Query verified as safe read-only SQL.",
+  "safety_warnings": [],
+  "query_result": {
+    "success": true,
+    "columns": [
+      "product_id",
+      "product_name",
+      "category",
+      "total_units_sold",
+      "net_sales"
+    ],
+    "rows": [
+      {
+        "product_id": "P-003",
+        "product_name": "Rice 5kg",
+        "category": "Groceries",
+        "total_units_sold": 155,
+        "net_sales": 87871.8
+      },
+      {
+        "product_id": "P-007",
+        "product_name": "Detergent",
+        "category": "Household",
+        "total_units_sold": 210,
+        "net_sales": 80003.49
+      },
+      {
+        "product_id": "P-001",
+        "product_name": "Tea Premium",
+        "category": "Beverages",
+        "total_units_sold": 183,
+        "net_sales": 67170.65
+      },
+      {
+        "product_id": "P-009",
+        "product_name": "Protein Bar",
+        "category": "Snacks",
+        "total_units_sold": 188,
+        "net_sales": 37483.14
+      },
+      {
+        "product_id": "P-008",
+        "product_name": "Floor Cleaner",
+        "category": "Household",
+        "total_units_sold": 153,
+        "net_sales": 36236.35
+      }
+    ],
+    "row_count": 5,
+    "execution_time_ms": 1.1,
+    "query_executed": "SELECT\n    p.product_id,\n    p.product_name,\n    p.category,\n    SUM(st.units_sold) AS total_units_sold,\n    ROUND(SUM(st.units_sold * st.unit_price * (1.0 - (st.discount_pct / 100.0))), 2) AS net_sales\nFROM sales_transactions st\nINNER JOIN products p ON st.product_id = p.product_id\n\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY net_sales DESC\nLIMIT 5",
+    "error": null
+  },
+  "business_summary": "**Top SKU Performance:** **Rice 5kg** generated the highest net sales at **\u20b987,871.80**, contributing 28.5% of the group total (\u20b9308,765.43).\n\n**Runner-up:** Detergent followed closely with \u20b980,003.49 across 210 units sold.\n\n*(Filtered by: last_primary_metric='net_sales')*",
+  "error": null,
+  "retry_count": 0
+}

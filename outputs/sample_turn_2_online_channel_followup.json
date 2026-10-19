@@ -1,0 +1,110 @@
+{
+  "question": "Now show only online channel.",
+  "original_question": "Now show only online channel.",
+  "is_followup": true,
+  "conversation_history": "RECENT CONVERSATION CONTEXT:\nTurn #1:\n  User Asked: \"What are the top 5 products by net sales?\"\n  Generated SQL: SELECT\n    p.product_id,\n    p.product_name,\n    p.category,\n    SUM(st.units_sold) AS total_units_sold,\n    ROUND(SUM(st.units_sold * st.unit_price * (1.0 - (st.discount_pct / 100.0))), 2) AS net_sales\nFROM sales_transactions st\nINNER JOIN products p ON st.product_id = p.product_id\n\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY net_sales DESC\nLIMIT 5\n  Summary: **Top SKU Performance:** **Rice 5kg** generated the highest net sales at **\u20b987,871.80**, contributing 28.5% of the group total (\u20b9308,765.43).\n\n**Runner-up:** Detergent followed closely with \u20b980,003.49 across 210 units sold.\n\n*(Filtered by: last_primary_metric='net_sales')*\n  Active Filters: last_primary_metric='net_sales'\nCurrent Cumulative Filters: last_primary_metric='net_sales'",
+  "active_filters": {
+    "channel": "Online",
+    "region": null,
+    "city": null,
+    "category": null,
+    "customer_segment": null,
+    "store_id": null,
+    "last_primary_metric": "net_sales",
+    "last_dimension": null
+  },
+  "generated_sql": "SELECT\n    p.product_id,\n    p.product_name,\n    p.category,\n    SUM(st.units_sold) AS total_units_sold,\n    ROUND(SUM(st.units_sold * st.unit_price * (1.0 - (st.discount_pct / 100.0))), 2) AS net_sales\nFROM sales_transactions st\nINNER JOIN products p ON st.product_id = p.product_id\nWHERE st.sales_channel = 'Online'\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY net_sales DESC\nLIMIT 10;",
+  "sanitized_sql": "SELECT\n    p.product_id,\n    p.product_name,\n    p.category,\n    SUM(st.units_sold) AS total_units_sold,\n    ROUND(SUM(st.units_sold * st.unit_price * (1.0 - (st.discount_pct / 100.0))), 2) AS net_sales\nFROM sales_transactions st\nINNER JOIN products p ON st.product_id = p.product_id\nWHERE st.sales_channel = 'Online'\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY net_sales DESC\nLIMIT 10",
+  "is_safe": true,
+  "safety_reason": "Query verified as safe read-only SQL.",
+  "safety_warnings": [],
+  "query_result": {
+    "success": true,
+    "columns": [
+      "product_id",
+      "product_name",
+      "category",
+      "total_units_sold",
+      "net_sales"
+    ],
+    "rows": [
+      {
+        "product_id": "P-003",
+        "product_name": "Rice 5kg",
+        "category": "Groceries",
+        "total_units_sold": 46,
+        "net_sales": 25676.14
+      },
+      {
+        "product_id": "P-007",
+        "product_name": "Detergent",
+        "category": "Household",
+        "total_units_sold": 58,
+        "net_sales": 22086.65
+      },
+      {
+        "product_id": "P-001",
+        "product_name": "Tea Premium",
+        "category": "Beverages",
+        "total_units_sold": 46,
+        "net_sales": 16863.74
+      },
+      {
+        "product_id": "P-009",
+        "product_name": "Protein Bar",
+        "category": "Snacks",
+        "total_units_sold": 69,
+        "net_sales": 14087.71
+      },
+      {
+        "product_id": "P-004",
+        "product_name": "Cooking Oil",
+        "category": "Groceries",
+        "total_units_sold": 35,
+        "net_sales": 6498.35
+      },
+      {
+        "product_id": "P-006",
+        "product_name": "Face Wash",
+        "category": "Personal Care",
+        "total_units_sold": 66,
+        "net_sales": 6416.44
+      },
+      {
+        "product_id": "P-010",
+        "product_name": "Trail Mix",
+        "category": "Snacks",
+        "total_units_sold": 61,
+        "net_sales": 6119.69
+      },
+      {
+        "product_id": "P-008",
+        "product_name": "Floor Cleaner",
+        "category": "Household",
+        "total_units_sold": 25,
+        "net_sales": 5654.79
+      },
+      {
+        "product_id": "P-002",
+        "product_name": "Cold Brew",
+        "category": "Beverages",
+        "total_units_sold": 37,
+        "net_sales": 5389.33
+      },
+      {
+        "product_id": "P-005",
+        "product_name": "Herbal Shampoo",
+        "category": "Personal Care",
+        "total_units_sold": 46,
+        "net_sales": 2065.84
+      }
+    ],
+    "row_count": 10,
+    "execution_time_ms": 1.12,
+    "query_executed": "SELECT\n    p.product_id,\n    p.product_name,\n    p.category,\n    SUM(st.units_sold) AS total_units_sold,\n    ROUND(SUM(st.units_sold * st.unit_price * (1.0 - (st.discount_pct / 100.0))), 2) AS net_sales\nFROM sales_transactions st\nINNER JOIN products p ON st.product_id = p.product_id\nWHERE st.sales_channel = 'Online'\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY net_sales DESC\nLIMIT 10",
+    "error": null
+  },
+  "business_summary": "**Top SKU Performance:** **Rice 5kg** generated the highest net sales at **\u20b925,676.14**, contributing 23.2% of the group total (\u20b9110,858.68).\n\n**Runner-up:** Detergent followed closely with \u20b922,086.65 across 58 units sold.\n\n*(Filtered by: channel='Online', last_primary_metric='net_sales')*",
+  "error": null,
+  "retry_count": 0
+}

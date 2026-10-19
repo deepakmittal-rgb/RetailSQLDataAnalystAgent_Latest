@@ -1,0 +1,25 @@
+Retail SQL Data Analyst Agent - Data Load Verification Evidence
+Generated: 2026-10-19T12:23:26Z
+Engine: SQLite & MySQL Relational Schema
+Source: /data/*.csv
+
+============================================================
+DATA INTEGRITY AUDIT:
+============================================================
+[PASSED] Table 'customers'          Expected:  80 | Actual:  80 rows
+[PASSED] Table 'products'           Expected:  10 | Actual:  10 rows
+[PASSED] Table 'stores'             Expected:  15 | Actual:  15 rows
+[PASSED] Table 'sales_transactions' Expected: 360 | Actual: 360 rows
+[PASSED] Table 'returns'            Expected:  46 | Actual:  46 rows
+
+BUSINESS METRICS BASELINE:
+------------------------------------------------------------
+Total Net Revenue:   INR 406,797.71
+Total Units Sold:    1,783 units
+Total Orders:        360 transactions
+Total Returns:       46 items returned (12.78% order return rate)
+Fulfillment Stores:  15 stores across 5 regions (North, South, East, West, Central)
+Customer Base:       80 registered profiles (Regular, Budget, Premium, Wholesale)
+SKU Catalog:         10 products across 5 categories
+
+INTEGRITY STATUS: 100% VERIFIED AND READY FOR QUERIES.
